@@ -1,21 +1,25 @@
+import { useEffect, useState } from "react";
 import { PDF_BASE64 } from "./base64";
 
 function App() {
-  const download = (pdf) => {
+  const [fileUrl, setFileUrl] = useState(null);
+
+  useEffect(() => {
     const linkSource = `data:application/pdf;base64,${PDF_BASE64}`;
-    const downloadLink = document.createElement("a");
-    const fileName = "pdf.pdf";
-    downloadLink.href = linkSource;
-    downloadLink.download = fileName;
-    // ios
-    downloadLink.target = "_blank";   
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-  };
+
+    fetch(linkSource)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const fileUrl = URL.createObjectURL(blob);
+        setFileUrl(fileUrl);
+      });
+  }, []);
 
   return (
     <div className="App">
-      <button onClick={() => download()}>BAIXAR PDF 2</button>
+      <a href={fileUrl} target="_blank" rel="noreferrer">
+        Download PDF
+      </a>
     </div>
   );
 }
