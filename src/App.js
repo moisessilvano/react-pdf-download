@@ -7,6 +7,8 @@ function App() {
     const fileName = "pdf.pdf";
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
+    // ios
+    downloadLink.target = "_blank";    
     downloadLink.click();
   };
 
