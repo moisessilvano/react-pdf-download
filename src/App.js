@@ -8,13 +8,14 @@ function App() {
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
     // ios
-    downloadLink.target = "_blank";    
+    downloadLink.target = "_blank";   
+    document.body.appendChild(downloadLink);
     downloadLink.click();
   };
 
   return (
     <div className="App">
-      <button onClick={() => download()}>BAIXAR PDF</button>
+      <button onClick={() => download()}>BAIXAR PDF 2</button>
     </div>
   );
 }
