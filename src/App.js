@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => download()}>Download</button>
+      <button onClick={() => download()}>BAIXAR PDF</button>
     </div>
   );
 }
