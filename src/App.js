@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { PDF_BASE64 } from "./base64";
 
 function App() {
+  const download = (pdf) => {
+    const linkSource = `data:application/pdf;base64,${PDF_BASE64}`;
+    const downloadLink = document.createElement("a");
+    const fileName = "pdf.pdf";
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => download()}>Download</button>
     </div>
   );
 }
